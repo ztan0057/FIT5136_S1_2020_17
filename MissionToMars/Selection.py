@@ -22,8 +22,3 @@ def main():
 
 
 main()
-# ed = pd.read_excel('sample missionToMars data.xlsx')
-# print(ed)
-# a = ed.iloc[3]["employee name"]
-# print(a)
-# print(ed.iloc[2,1])
