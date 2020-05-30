@@ -1,24 +1,63 @@
 import pandas as pd
 
-def readfile(file_name): #读取candidate名单
-    file = pd.read_excel(file_name)
-    print(file)
-    return file
+n = 0
 
-def selection(candidate,n):
-    u_name = candidate.iloc[n+1]["employee name"]
+def read_from_file(file_name):
+    file = open(file_name,'r')
+    name = file.readlines()
+    file.close()
+    return name
+
+def readexcel(file_name): #读取candidate名单
+    excel = pd.read_excel(file_name)
+    print(excel)
+    return excel
+
+def selection(candidate):
+    print("please choose candidate")
+    n = input()
+    n = int(n)
+    u_name = candidate.iloc[n]["employee name"]
     print(u_name)
     return u_name
 
-def writefile(file_name,u_name):
-    file_handle = open(file_name, 'w')
-    file_handle.write(u_name +'\n')
+def writefile(file_name,name='',x='w'):
+
+    file_handle = open(file_name, x)
+    file_handle.write(name + '\n')
     file_handle.close()
+
+def a_or_r(selected_name):#accept or reject
+    global n
+    n = 0
+    i = 0
+    while i < len(selected_name):# check whether the candidat has been choosen
+        if selected_name(i) == user_name:
+            print("You have been choosen for a mission")
+            print("Please choose 1.Accept or 2.Reject")
+            n = int(input())
+
+
+
 
 
 def main():
-    candidate = readfile('sample missionToMars data.xlsx')
-    selection(candidate,2)
+    global n
+    candidate = readexcel('sample missionToMars data.xlsx')
+    c_name = selection(candidate)
+    writefile('selected.txt', c_name,'a') # use to store the name who was selected
+    # if user_type == "candidate"
+    #     a = read_from_file('selected.txt')
+    #     a_or_r(a)
+    #     if n == 1:
+    #         writefile('inform.txt', user_name,'a')
+    #         writefile('inform.txt', "Accept",'a')
+    #     elif n ==2:
+    #         writefile('inform.txt', user_name,'a')
+    #         writefile('inform.txt',"Reject")
 
 
-main()
+    # receive = read_from_file('inform.txt') # If administratro want to know who accept or reject, also can creat a function to print
+    # print(receive)
+    # writefile('inform')#clear the file
+writefile('inform.txt')
