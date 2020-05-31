@@ -91,7 +91,6 @@ class Controller:
     def start(self):
         # self.save_missions(missions)
         # 登录之后的循环，要接入整个程序需要处理一下
-        # 比如说，你框选的模块中不包含用户登录逻辑，所以这边我们暂时通过一个输入判断来确定是否是用户
         # FIXME 状态机
         current = User()
         # main | mission task
