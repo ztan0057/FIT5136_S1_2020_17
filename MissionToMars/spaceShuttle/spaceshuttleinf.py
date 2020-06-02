@@ -31,7 +31,7 @@ class ShuttleDataLoader:
         return self._shuttle_dict.values()
 
     def get_shuttle_by_id(self, shuttle_id):
-        return self._shuttle_dict[shuttle_id]
+        return self._shuttle_dict[shuttle_id] if shuttle_id in self._shuttle_dict else None
 
 
 if __name__ == '__main__':
