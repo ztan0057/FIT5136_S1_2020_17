@@ -33,3 +33,15 @@ class ShuttleDataLoader:
     def get_shuttle_by_id(self, shuttle_id):
         return self._shuttle_dict[shuttle_id]
 
+
+if __name__ == '__main__':
+    shuttleDataLoader = ShuttleDataLoader()
+    shuttleDataLoader.load_from_csv('./data/shuttle_data.csv')
+
+    for s in shuttleDataLoader.get_shuttle_list():
+        print(s)
+
+    selection = int(input('Enter ID of shuttle you  want to select'))
+
+    selected_shuttle = shuttleDataLoader.get_shuttle_by_id(selection)
+    print(selected_shuttle)
