@@ -72,3 +72,13 @@ class Shuttle:
     @origin.setter
     def origin(self, value):
         self._origin = value
+
+    def __repr__(self):
+        return f'Shuttle Id: {self._shuttle_id}\t' \
+            f'Name: {self._name}\t' \
+            f'Manufacture Year: {self._manufacture_year}\t' \
+            f'Fuel Capacity: {self._fuel_capacity}\t' \
+            f'Passenger Capacity: {self._passenger_capacity}\t' \
+            f'Cargo Capacity: {self._cargo_capacity}\t' \
+            f'Travel Speed: {self._travel_speed}\t' \
+            f'Origin: {self._origin}'
