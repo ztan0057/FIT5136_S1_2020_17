@@ -37,6 +37,11 @@ def a_or_r(selected_name):#accept or reject
             print("Please choose 1.Accept or 2.Reject")
             n = int(input())
 
+def createcandidate(missionname):
+    f = missionname + '.txt'
+    file = open(f,'w')
+    file.close()
+    return f
 
 
 
@@ -44,6 +49,8 @@ def a_or_r(selected_name):#accept or reject
 def main():
     global n
     candidate = readexcel('sample missionToMars data.xlsx')
+    # f = createcandidate(missionname) #creat a txt for this mission to store candidate's name
+    # writefile(f, c_name,'a')# store the name for each mission
     c_name = selection(candidate)
     writefile('selected.txt', c_name,'a') # use to store the name who was selected
     # if user_type == "candidate"
@@ -60,4 +67,3 @@ def main():
     # receive = read_from_file('inform.txt') # If administratro want to know who accept or reject, also can creat a function to print
     # print(receive)
     # writefile('inform')#clear the file
-writefile('inform.txt')
