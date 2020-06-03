@@ -8,12 +8,12 @@ def read_from_file(file_name):
     file.close()
     return name
 
-def readexcel(file_name): #读取candidate名单
+def readexcel(file_name): #get candidate list, its depend on what type of file we used to store list
     excel = pd.read_excel(file_name)
     print(excel)
     return excel
 
-def selection(candidate):
+def selection(candidate): #use number to choose candidate
     print("please choose candidate")
     n = input()
     n = int(n)
