@@ -1,5 +1,5 @@
-from MissionToMars.user import User
-from MissionToMars.mission import Mission
+from MissionToMars.mission_to_mars.MissionToMars.user import User
+from MissionToMars.mission_to_mars.MissionToMars.mission import Mission
 
 
 class Controller:
