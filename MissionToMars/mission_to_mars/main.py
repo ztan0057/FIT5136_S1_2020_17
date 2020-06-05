@@ -28,6 +28,7 @@ class Controller:
                     mission.cargo = parts[9]
                     mission.job = parts[10]
                     mission.requirements = parts[11]
+                    mission.shuttle = parts[12]
                     missions.append(mission)
         else:
             with open('mission_to_mars/data/mission_origin.txt') as f:
