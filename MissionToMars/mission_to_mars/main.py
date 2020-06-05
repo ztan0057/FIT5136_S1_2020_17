@@ -1,5 +1,5 @@
-from models.user import User
-from models.mission import Mission
+from MissionToMars.mission_to_mars.models.user import User
+from MissionToMars.mission_to_mars.models.mission import Mission
 
 
 class Controller:
@@ -152,7 +152,6 @@ class Controller:
             else:
                 print('Wrong input, please input again.')
 
-
-if __name__ == '__main__':
+def start():
     controller = Controller()
     controller.start()
