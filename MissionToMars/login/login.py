@@ -28,7 +28,8 @@ if input() == '1':
     clear()
     print(checkLogin(username, pwd))
 else:
-    username = input('enter you user name:')
-    pwd = input('enter your password:')
-    c.execute("INSERT INTO user (username,password) VALUES(?,?)", (username, pwd))
+    usn = input('enter your new username :')
+    pwd = input('enter your new password:')
+    c.execute("INSERT INTO USER(USERNAME, PASSWORD) VALUES (?,?)", (usn, pwd))
+    conn.commit()
 conn.close()
