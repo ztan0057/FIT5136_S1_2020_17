@@ -47,6 +47,7 @@ class Controller:
                     mission.cargo = parts[15]
                     mission.job = parts[6]
                     mission.requirements = parts[8]
+                    mission.shuttle = None
                     missions.append(mission)
         return missions
 
