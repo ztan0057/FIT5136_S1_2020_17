@@ -1,5 +1,5 @@
 from datetime import datetime
-from model.shuttle import Shuttle
+from MissionToMars.spaceShuttle.model.shuttle import Shuttle
 import csv
 
 
@@ -34,9 +34,9 @@ class ShuttleDataLoader:
         return self._shuttle_dict[shuttle_id] if shuttle_id in self._shuttle_dict else None
 
 
-if __name__ == '__main__':
+def main():
     shuttleDataLoader = ShuttleDataLoader()
-    shuttleDataLoader.load_from_csv('./data/shuttle_data.csv')
+    shuttleDataLoader.load_from_csv('spaceShuttle/data/shuttle_data.csv')
 
     for s in shuttleDataLoader.get_shuttle_list():
         print(s)
@@ -45,3 +45,7 @@ if __name__ == '__main__':
 
     selected_shuttle = shuttleDataLoader.get_shuttle_by_id(selection)
     print(selected_shuttle)
+
+
+if __name__ == '__main__':
+    main()

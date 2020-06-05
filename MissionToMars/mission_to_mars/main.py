@@ -1,5 +1,5 @@
-from MissionToMars.mission_to_mars.models.user import User
-from MissionToMars.mission_to_mars.models.mission import Mission
+from MissionToMars.user import User
+from MissionToMars.mission import Mission
 
 
 class Controller:
@@ -91,6 +91,7 @@ class Controller:
     def start(self):
         # self.save_missions(missions)
         # 登录之后的循环，要接入整个程序需要处理一下
+        # 比如说，你框选的模块中不包含用户登录逻辑，所以这边我们暂时通过一个输入判断来确定是否是用户
         # FIXME 状态机
         current = User()
         # main | mission task
@@ -99,7 +100,7 @@ class Controller:
         while True:
             missions = self.load_missions()
             if not current.login:
-                print('Enter "login c" or "login a" or "login m" to login.')
+                print('Enter "login candidate" or "login administrator" or "login mission coordinator" to login.')
             else:
                 # 判断身份
                 if self.can_enter_mission_list(current):
@@ -116,7 +117,7 @@ class Controller:
                 current.login = True
                 if user_input == 'login candidate':
                     current.type = 'Candidate'
-                elif user_input == 'login adminstrator':
+                elif user_input == 'login administrator':
                     current.type = 'Administrator'
                 elif user_input == 'login mission coordinator':
                     current.type = 'Mission coordinator'
