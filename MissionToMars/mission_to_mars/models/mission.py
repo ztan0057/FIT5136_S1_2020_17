@@ -14,6 +14,7 @@ class Mission:
         self._cargo = None
         self._job = None
         self._requirements = None
+        self._shuttle = None
 
     @property
     def name(self):
@@ -110,6 +111,10 @@ class Mission:
     @requirements.setter
     def requirements(self, value):
         self._requirements = value
+        
+    @shuttle
+    def shuttle(self, value):
+       self._shuttle = value
 
     def __repr__(self):
         return f'Name: {self._name}\t\t' \
@@ -140,6 +145,7 @@ class Mission:
         m.job = input('Please enter job:')
         m.requirements = input('Please enter requirements:')
         m.description = input('Please enter description:')
+        m.shuttle = input('Please choose a shuttle:')
         return m
 
 
