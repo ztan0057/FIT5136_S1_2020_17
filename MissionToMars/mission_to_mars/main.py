@@ -1,13 +1,18 @@
 from MissionToMars.mission_to_mars.MissionToMars.user import User
 from MissionToMars.mission_to_mars.MissionToMars.mission import Mission
-
+from MissionToMars.Selection import selection
+from MissionToMars.spaceShuttle import spaceshuttleinf as shuttle
+from MissionToMars import Selection
 
 class Controller:
+    def __init__(self, user):
+        self.user = user
+
     def load_missions(self, type='new'):
         # FIXME 从 txt 中加载
         missions = []
         if type == 'new':
-            with open('./data/mission.txt') as f:
+            with open('mission_to_mars/data/mission.txt') as f:
                 for line in f:
                     parts = line.strip().split('\t')
                     mission = Mission()
@@ -25,7 +30,7 @@ class Controller:
                     mission.requirements = parts[11]
                     missions.append(mission)
         else:
-            with open('./data/mission_origin.txt') as f:
+            with open('mission_to_mars/data/mission_origin.txt') as f:
                 for line in f:
                     parts = line.strip().split('\t')
                     mission = Mission()
@@ -46,7 +51,7 @@ class Controller:
 
     def save_missions(self, missions):
         # FIXME 保存到 txt 中
-        with open('./data/mission.txt', 'w') as f:
+        with open('mission_to_mars/data/mission.txt', 'w') as f:
             for mission in missions:
                 f.write(mission.name if mission.name else '')
                 f.write('\t')
@@ -74,7 +79,7 @@ class Controller:
                 f.write('\n')
 
     def can_enter_mission_list(self, user):
-        return user.type == 'Administrator' or user.type == 'Mission coordinator'
+        return user.type == 'admin' or user.type == 'Mission coordinator'
 
     def find_mission_by_name(self, name, missions):
         mission = None
@@ -93,7 +98,7 @@ class Controller:
         # 登录之后的循环，要接入整个程序需要处理一下
         # 比如说，你框选的模块中不包含用户登录逻辑，所以这边我们暂时通过一个输入判断来确定是否是用户
         # FIXME 状态机
-        current = User()
+        current = self.user
         # main | mission task
         # main | login
         state = 'main'
@@ -108,6 +113,7 @@ class Controller:
                           '\t"y" to get mission list, \n'
                           '\t"u [name]" to update mission by name, \n'
                           '\t"c" to create mission, \n'
+                          '\t"cri" to create selection criteria, \n'
                           '\t"exit" to login off.')
                 else:
                     print('You can input "exit" to login off.')
@@ -116,7 +122,7 @@ class Controller:
             if not current.login:
                 current.login = True
                 if user_input == 'login candidate':
-                    current.type = 'Candidate'
+                    current.type = 'candidate'
                 elif user_input == 'login administrator':
                     current.type = 'Administrator'
                 elif user_input == 'login mission coordinator':
@@ -129,12 +135,19 @@ class Controller:
                 print('Mission list:')
                 for mission in missions:
                     print(mission)
+            if self.can_enter_mission_list(current) and user_input == 'cri':
+                input('Candidate Age:')
+                input('years of exp:')
+                input('health check:')
+                Selection.main()
+                pass
             elif self.can_enter_mission_list(current) and user_input == 'c':
                 # 进入创建 mission
                 m = Mission.from_input()
                 missions.append(m)
                 print('Mission created.')
                 self.save_missions(missions)
+                shuttle.main()
                 pass
             elif self.can_enter_mission_list(current) and user_input.startswith('u '):
                 # 进入更新 mission
@@ -150,9 +163,15 @@ class Controller:
             elif user_input == 'exit':
                 current.login = False
                 print('login off.')
+                break
             else:
                 print('Wrong input, please input again.')
 
-def start():
-    controller = Controller()
+
+def main(user):
+    controller = Controller(user)
     controller.start()
+
+
+if __name__ == '__main__':
+    main()

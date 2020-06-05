@@ -45,6 +45,7 @@ def main():
 
     selected_shuttle = shuttleDataLoader.get_shuttle_by_id(selection)
     print(selected_shuttle)
+    return selected_shuttle
 
 
 if __name__ == '__main__':

@@ -123,7 +123,9 @@ class Mission:
                f'Job: {self._job}\t\t' \
                f'Requirements: {self._requirements}\t\t\n' \
                f'Description: {self._description}\n'
-
+    def create_selection(self):
+        # TODO:
+        pass
     @classmethod
     def from_input(cls):
         m = cls()

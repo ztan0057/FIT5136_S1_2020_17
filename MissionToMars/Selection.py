@@ -69,3 +69,6 @@ def main():
     # receive = read_from_file('inform.txt') # If administratro want to know who accept or reject, also can creat a function to print
     # print(receive)
     # writefile('inform')#clear the file
+
+if __name__ == '__main__':
+    main()

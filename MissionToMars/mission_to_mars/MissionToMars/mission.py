@@ -15,6 +15,7 @@ class Mission:
         self._job = None
         self._requirements = None
 
+
     @property
     def name(self):
         return self._name
